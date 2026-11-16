@@ -1,7 +1,7 @@
 cask "purescience" do
-  version "2.26.0"
-  sha256 arm:   "4848c62a5970779d1d70f22500948c3c17a109b457180bff37c004225a1414ea",
-         intel: "58ebff106806860a39845e535e91d1963c4d2ad97cb32a1b068af28d661c1df4"
+  version "2.27.0"
+  sha256 arm:   "c90065bc6756e4e44f51c043024751220ee13b209abf27a9663017f045890bdc",
+         intel: "630858c39663adeb49b75327ffeef2879da56ba0a80a4d47dec1016125b090ef"
 
   url "https://github.com/naiyixi/PureScience/releases/download/v#{version}/zerolink-purescience-#{version}-mac-#{Hardware::CPU.arm? ? "arm64" : "x64"}.dmg"
   name "PureScience"
@@ -23,11 +23,13 @@ cask "purescience" do
   ]
 
   caveats <<~EOS
-    This build is signed ad-hoc and is not notarized yet, so macOS may refuse the
-    first launch after Homebrew installs it. If that happens, reinstall with:
+    PureScience is signed with a Developer ID Application certificate and notarized
+    by Apple as of 2.27.0, so a quarantined copy should pass Gatekeeper. Earlier
+    versions (2.26.0 and before) were ad-hoc signed and were not notarized.
+
+    If macOS still refuses the first launch on this version, that is a defect worth
+    reporting; as a workaround you can reinstall with:
 
       brew install --cask --no-quarantine purescience
-
-    Notarization is tracked for the next release; the caveat will be removed then.
   EOS
 end
